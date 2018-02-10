@@ -1,6 +1,13 @@
 {% extends "main.html" %}
 {% block content %}
 
+<form action="{{url_for('create_player')}}" method="POST">
+ <div class="form-group">
+    <label for="name">Player Name:</label>
+    <input type="text" name="name" class="form-control" id="Player" placeholder="Enter new player">
+ </div>
+ <button type="submit" class="btn btn-primary">Submit</button>
+</form>
 
 
 {% endblock %}

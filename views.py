@@ -29,7 +29,15 @@ def player_list():
 
 @app.route('/createplayer', methods=['GET', 'POST'])
 def create_player():
-	
+	if request.method == 'POST':
+		new_name = request.form['name']
+		new_player = Stats(player = new_name, game = 0, win = 0, lose = 0)
+		session.add(new_player)
+		session.commit()
+		return redirect(url_for('player_list'))
+	else:
+		return render_template('create_player.html')
+
 
 @app.route('/startgame', methods=['GET', 'POST'])
 def start_game():

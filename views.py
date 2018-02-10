@@ -64,6 +64,7 @@ def play_game(player1,player2):
 			loser.game = loser.game + 1
 			loser.lose = loser.lose + 1
 			session.commit()
+			return redirect(url_for('leaderboard'))
 		elif request.form["player"] == player2:
 			winner = session.query(Stats).filter_by(player=player2).one()
 			loser = session.query(Stats).filter_by(player=player1).one()
@@ -72,12 +73,13 @@ def play_game(player1,player2):
 			loser.game = loser.game + 1
 			loser.lose = loser.lose + 1
 			session.commit()
+			return redirect(url_for('leaderboard'))
 	return render_template('play_game.html', player1=player1, player2=player2)
 
 
 @app.route('/leaderboard')
 def leaderboard():
-	players = session.query(Stats).order_by(asc(Stats.win))
+	players = session.query(Stats).order_by(Stats.win.desc(),Stats.lose.asc()).all()
 	return render_template('leaderboard.html',players=players)
 
 

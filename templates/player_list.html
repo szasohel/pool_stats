@@ -1,6 +1,17 @@
 {% extends "main.html" %}
 {% block content %}
 
+<button type="button" class="btn btn-success"><h4><a href="{{url_for('home')}}">Home</a></h4></button>
 
+<div class="col-md-4 control">
+	<button type="button" class="btn btn-success"><h4><a href="{{url_for('create_player')}}">Create New Player</a></h4></button>
+</div>
+<div class="col-md-8">
+	<div class="list-group">
+		{% for i in players %}
+			<a class="list-group-item list-group-item-action list-group-item-primary">{{i.player}}</a>
+		{%endfor%}
+	</div>
+</div>
 
 {% endblock %}

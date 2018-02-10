@@ -41,7 +41,17 @@ def create_player():
 
 @app.route('/startgame', methods=['GET', 'POST'])
 def start_game():
-	
+	if request.method == 'POST':
+		player1 = request.form['player1']
+		player2 = request.form['player2']
+		if player1 == player2:
+			return redirect(url_for('start_game'))
+		else:
+			return redirect(url_for('play_game', player1=player1, player2=player2))
+	else:	
+		players = session.query(Stats).order_by(asc(Stats.player))
+		return render_template('start_game.html', players=players)
+
 
 @app.route('/playgame/<string:player1>vs<string:player2>/', methods=['GET', 'POST'])
 def play_game(player1,player2):

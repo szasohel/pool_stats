@@ -1,6 +1,13 @@
 {% extends "main.html" %}
 {% block content %}
 
+<form action="{{url_for('play_game',player1=player1, player2=player2)}}" method="POST">
+ <div class="form-group">
+    <input type="radio" name="player" value="{{player1}}">{{player1}}
+    <input type="radio" name="player" value="{{player2}}">{{player2}}
+ </div>
+ <button type="submit" class="btn btn-primary">Submit</button>
+</form>
 
 
 {% endblock %}

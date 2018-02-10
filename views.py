@@ -55,11 +55,30 @@ def start_game():
 
 @app.route('/playgame/<string:player1>vs<string:player2>/', methods=['GET', 'POST'])
 def play_game(player1,player2):
-	
+	if request.method == 'POST':
+		if request.form["player"] == player1:
+			winner = session.query(Stats).filter_by(player=player1).one()
+			loser = session.query(Stats).filter_by(player=player2).one()
+			winner.game = winner.game + 1
+			winner.win = winner.win + 1
+			loser.game = loser.game + 1
+			loser.lose = loser.lose + 1
+			session.commit()
+		elif request.form["player"] == player2:
+			winner = session.query(Stats).filter_by(player=player2).one()
+			loser = session.query(Stats).filter_by(player=player1).one()
+			winner.game = winner.game + 1
+			winner.win = winner.win + 1
+			loser.game = loser.game + 1
+			loser.lose = loser.lose + 1
+			session.commit()
+	return render_template('play_game.html', player1=player1, player2=player2)
+
 
 @app.route('/leaderboard')
 def leaderboard():
-	
+	players = session.query(Stats).order_by(asc(Stats.win))
+	return render_template('leaderboard.html',players=players)
 
 
 

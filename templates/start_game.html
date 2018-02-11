@@ -3,21 +3,22 @@
 
 
 <form action="{{url_for('start_game')}}" method="POST">
-	<label for="player1">Select Player 1</label>
-	<select name="player1">
-		{% for i in players %}
-	  <option value="{{i.player}}">{{i.player}}</option>
-	  	{%endfor%}
-	</select>
-
-	<label for="player2">Select Player 2</label>
-	<select name="player2">
-		{% for j in players %}
-	  <option value="{{j.player}}">{{j.player}}</option>
-	  	{%endfor%}
-	</select>
-
-	<button type="submit" class="btn btn-primary">Submit</button>
-
+	<div id="player1">
+		<label for="player1" >Select Player 1</label>
+		<select name="player1" class="player">
+			{% for i in players %}
+		  <option value="{{i.player}}">{{i.player}}</option>
+		  	{%endfor%}
+		</select>
+	</div>
+	<div id="player2">
+		<label for="player2">Select Player 2</label>
+		<select name="player2" class="player">
+			{% for j in players %}
+		  <option value="{{j.player}}">{{j.player}}</option>
+		  	{%endfor%}
+		</select>
+	</div>
+	<button type="submit" class="btn btn-primary start-game">Start Game</button>
 </form>
 {% endblock %}

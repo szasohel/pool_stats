@@ -1,12 +1,15 @@
 {% extends "main.html" %}
 {% block content %}
 
-<a href="{{url_for('start_game')}}"><button>Play</button></a>
+
+<button type="button" id="play-button" class="btn btn-outline-light"><a href="{{url_for('start_game')}}">PLAY</a></button>
+
+<button type="button" id="players-button" class="btn btn-info"><a href="{{url_for('player_list')}}">Players</a></button>
+<button type="button" id="leaderboard-button" class="btn btn-info"><a href="{{url_for('leaderboard')}}">Leaderboard</a></button>
 
 
 
-<a href="{{url_for('player_list')}}"><button>Players</button></a>
-<a href="{{url_for('leaderboard')}}"><button>Leaderboard</button></a>
+
 
 
 {% endblock %}

@@ -9,7 +9,7 @@ import time
 app = Flask(__name__)
 
 # connect to database
-engine = create_engine('postgresql://catalog:catalog@localhost/catalog')
+engine = create_engine('sqlite:///Stats.db')
 Base.metadata.bind = engine
 
 # create database session

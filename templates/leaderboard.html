@@ -1,27 +1,27 @@
 {% extends "main.html" %}
 {% block content %}
-
-
-<table>
-	{% for i in players %}
-	<tr>
-		<td>
-			{{i.player}}
-		</td>
-		<td>
-			{{i.game}}
-		</td>
-		<td>
-			{{i.win}}
-		</td>
-		<td>
-			{{i.lose}}
-		</td>
-	</tr>
-	{%endfor%}
+<button type="button" class="home-btn btn btn-success">
+    <h4><a href="{{url_for('home')}}">Home</a></h4>
+</button>
+<table class="table table-striped leaderboard-table">
+    <!-- column name -->
+    <thead>
+        <tr>
+            <th scope="col">Player</th>
+            <th scope="col">Game</th>
+            <th scope="col">Win</th>
+            <th scope="col">Lose</th>
+        </tr>
+    </thead>
+    <!-- column content dynamically generated from database -->
+    <tbody>
+        {% for i in players %}
+        <tr>
+            <td id="player-name">{{i.player}}</td>
+            <td>{{i.game}}</td>
+            <td>{{i.win}}</td>
+            <td>{{i.lose}}</td>
+        </tr>
+        {%endfor%}
 </table>
-
-<button type="button" class="btn btn-success"><h4><a href="{{url_for('home')}}">Home</a></h4></button>
-
-
 {% endblock %}

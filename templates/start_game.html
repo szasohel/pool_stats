@@ -1,24 +1,25 @@
 {% extends "main.html" %}
 {% block content %}
 
-
-<form action="{{url_for('start_game')}}" method="POST">
-	<div id="player1">
-		<label for="player1" >Select Player 1</label>
-		<select name="player1" class="player">
-			{% for i in players %}
-		  <option value="{{i.player}}">{{i.player}}</option>
-		  	{%endfor%}
-		</select>
-	</div>
-	<div id="player2">
-		<label for="player2">Select Player 2</label>
-		<select name="player2" class="player">
-			{% for j in players %}
-		  <option value="{{j.player}}">{{j.player}}</option>
-		  	{%endfor%}
-		</select>
-	</div>
-	<button type="submit" class="btn btn-primary start-game">Start Game</button>
+<form action="{{url_for('start_game')}}" id="start-game-form" method="POST">
+    <!-- player1 selector form -->
+    <div id="player1" class="form-group">
+        <label for="player1" >Select Player 1</label>
+        <select name="player1" class="form-control select-player1">
+            {% for i in players %}
+            <option value="{{i.player}}">{{i.player}}</option>
+            {%endfor%}
+        </select>
+    </div>
+    <!-- player 2 selector form -->
+    <div id="player2" class="form-group">
+        <label for="player2">Select Player 2</label>
+        <select name="player2" class="form-control select-player2">
+            {% for j in players %}
+            <option value="{{j.player}}">{{j.player}}</option>
+            {%endfor%}
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary start-game-btn">Start Game</button>
 </form>
 {% endblock %}

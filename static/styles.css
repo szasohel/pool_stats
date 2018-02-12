@@ -1,94 +1,204 @@
-*{
+* {
 	box-sizing: border-box;
 }
 
-body{
+html,
+body {
 	height: 100%;
-	margin: 0px;
 	background: url("img/pool_body_bg.jpg");
 	background-position: center center;
 	background-repeat: no-repeat;
-	background-attachment: fixed;
 	background-size: cover;
+	background-attachment: fixed;
 }
 
-.container{
-	background-color: rgba(122, 216, 254, 0.4);
-	height: 90vh;
-	padding: 0px;
+main.container {
+	height: 80%;
 }
 
-#play-button a{
+#play-button a {
 	text-decoration: none !important;
 	color: red;
 }
 
-a:hover{
+a:hover {
 	text-decoration: none !important;
-	color: red;
+	color: white;
 }
 
-
-a{
+a {
 	text-decoration: none !important;
 	color: white;
 }
 
 
-#play-button{
+/*home page created with standard CSS*/
+
+#play-button {
 	position: absolute;
 	left: 50%;
 	top: 50%;
-	transform: translate(-50%,-50%);
+	transform: translate(-50%, -50%);
 	font-size: 5em;
 	border-radius: 10px;
 	box-shadow: 0px 10px 18px #FFE4C4;
 }
 
-#players-button{
+#players-button {
 	float: right;
-	margin-top: 20px;
+	margin-top: 40px;
 	margin-right: 10px;
 	font-size: 2em;
 }
 
-#leaderboard-button{
+#leaderboard-button {
 	float: left;
-	margin-top: 20px;
+	margin-top: 40px;
 	margin-left: 10px;
 	font-size: 2em;
 }
 
-footer{
+footer {
 	height: 50px;
-  	position: absolute;
-  	bottom: 0;
-  	width: 100%;
-  	color: white;
+	position: absolute;
+	bottom: 0;
+	left: auto;
+	width: 100%;
+	color: white;
 	border: 1px solid grey;
 	text-align: center;
 	background-color: grey;
 }
 
-.start-game{
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%,-50%);
-	font-size: 2em;
+
+/*start game page created with CSS flex-box*/
+
+#start-game-form {
+	margin-top: 10%;
+	min-height: 70%;
+	display: flex;
+	justify-content: space-between;
+}
+
+#player1 {
+	order: 1;
+	flex-basis: 30%;
+	align-self: flex-start;
+	font-size: 2.5em;
+	color: #E87B34;
+	font-weight: bold;
+}
+
+#player2 {
+	order: 3;
+	flex-basis: 30%;
+	align-self: flex-end;
+	font-size: 2.5em;
+	color: #E87B34;
+	font-weight: bold;
+}
+
+.start-game-btn {
+	order: 2;
+	flex-basis: 10%;
+	align-self: center;
+	font-size: 3em;
 	border-radius: 10px;
-	box-shadow: 0px 10px 18px #FFE4C4;
+	box-shadow: 0px 10px 18px #58F1CC;
 }
 
-#player1{
-	float: left;
-	
+#play-game-form {
+	margin-top: 5%;
+	min-height: 65%;
+	display: flex;
+	justify-content: space-between;
 }
 
-#player2{
+#play-pl1 {
+	order: 1;
+	font-size: 4em;
+	color: #58F1CC;
+	font-weight: bold;
+	text-shadow: 3px 3px #FF0000;
+}
+
+#play-pl2 {
+	order: 3;
+	font-size: 4em;
+	color: #58F1CC;
+	font-weight: bold;
+	text-shadow: 3px 3px #FF0000;
+}
+
+input[type="radio"] {
+	margin-right: 15px;
+}
+
+.play-game-btn {
+	order: 2;
+	align-self: center;
+	height: 7%;
+	font-size: 3em;
+	border-radius: 10px;
+	background-color: red;
+	border-color: red;
+	box-shadow: 0px 10px 18px #58F1CC;
+}
+
+table {
+	margin-top: 20px;
+}
+
+thead {
+	color: white;
+	font-size: 1.5em;
+}
+
+td#player-name {
+	color: red;
+	font-weight: bold;
+	font-size: 1.2em;
+}
+
+td {
+	color: white;
+	font-weight: bold;
+	font-size: 1.2em;
+}
+
+.home-btn {
 	float: right;
+	margin: 20px 0px 20px 0px;
 }
 
+.table-striped {
+	background-color: rgba(186, 252, 236, 0.2);
+}
 
+.flash {
+	color: red;
+}
 
+.create-player-form {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: white;
+	font-weight: bold;
+	font-size: 1.5em;
+}
 
+.create-player-form input {
+	width: 300px;
+}
+
+.greet-text{
+	text-align: center;
+}
+
+.greet-text h1 {
+	font-size: 4em;
+	color: red;
+	text-shadow: 3px 3px white;
+}

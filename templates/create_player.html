@@ -1,14 +1,26 @@
 {% extends "main.html" %}
 {% block content %}
-
-
-<form action="{{url_for('create_player')}}" method="POST">
- <div class="form-group">
-    <label for="name">Player Name:</label>
-    <input type="text" name="name" class="form-control" id="Player" placeholder="Enter new player">
- </div>
- <button type="submit" class="btn btn-primary">Submit</button>
+<!-- flash message setion -->
+<section class="row justify-content-md-center">
+    <div class="col-md-auto flash">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li> <strong> {{ message }} </strong> </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+    </div>
+</section>
+<!-- create player form -->
+<form action="{{url_for('create_player')}}" class="create-player-form" method="POST">
+    <div class="form-group">
+        <label for="name">Player Name:</label>
+        <input type="text" name="name" class="form-control" id="create-player" placeholder="Enter new player">
+    </div>
+    <button type="submit" class="btn btn-primary create-player-btn">Submit</button>
+    <button type="submit" class="btn btn-danger"><a href="{{url_for('home')}}">Cancel</a></button>
 </form>
-
-
 {% endblock %}

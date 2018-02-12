@@ -2,7 +2,7 @@ from sqlalchemy import create_engine, asc
 from sqlalchemy.orm import sessionmaker
 from model import Base, Stats
 from flask import Flask, render_template, url_for
-from flask import request, redirect
+from flask import request, redirect, flash
 
 
 app = Flask(__name__)
@@ -12,43 +12,45 @@ engine = create_engine('sqlite:///Stats.db')
 Base.metadata.bind = engine
 
 # create database session
-
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
+# home page
 @app.route('/')
 def home():
 	return render_template('home.html')
 
-
-@app.route('/playerlist')
-def player_list():
-	players = session.query(Stats).order_by(asc(Stats.player))
-	return render_template('player_list.html', players=players)
-
-
+# create player page
 @app.route('/createplayer', methods=['GET', 'POST'])
 def create_player():
 	if request.method == 'POST':
-		new_name = request.form['name']
-		new_player = Stats(player = new_name, game = 0, win = 0, lose = 0)
-		session.add(new_player)
-		session.commit()
-		return redirect(url_for('player_list'))
+		player = request.form['name']
+		# checking for existing player
+		existing = session.query(Stats).filter_by(player=player).scalar() is not None
+		# show flash message if player already exist
+		if existing:
+			flash("Player already exist. Try entering different name")
+			return redirect(url_for('create_player'))
+		# if player not exist then create new player in database
+		else:
+			new_player = Stats(player = player, game = 0, win = 0, lose = 0)
+			session.add(new_player)
+			session.commit()
+			return redirect(url_for('start_game'))
 	else:
 		return render_template('create_player.html')
 
 
+# start game page
 @app.route('/startgame', methods=['GET', 'POST'])
 def start_game():
 	if request.method == 'POST':
+		# redirect to the play game page
 		player1 = request.form['player1']
 		player2 = request.form['player2']
-		if player1 == player2:
-			return redirect(url_for('start_game'))
-		else:
-			return redirect(url_for('play_game', player1=player1, player2=player2))
-	else:	
+		return redirect(url_for('play_game', player1=player1, player2=player2))
+	else:
+		# if get rquest then show the start game page
 		players = session.query(Stats).order_by(asc(Stats.player))
 		return render_template('start_game.html', players=players)
 
@@ -85,5 +87,6 @@ def leaderboard():
 
 
 if __name__ == '__main__':
-    app.debug = True
-    app.run()
+	app.secret_key = 'super_secret_key'
+	app.debug = True
+	app.run()

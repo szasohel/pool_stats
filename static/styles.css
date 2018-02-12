@@ -60,7 +60,7 @@ a {
 
 footer {
 	height: 50px;
-	position: absolute;
+	position: fixed;
 	bottom: 0;
 	left: auto;
 	width: 100%;
@@ -148,6 +148,7 @@ input[type="radio"] {
 table {
 	margin-top: 20px;
 }
+
 
 thead {
 	color: white;

@@ -19,6 +19,6 @@ class Stats(Base):
     lose = Column(Integer)
 
 
-engine = create_engine('sqlite:///stats.db')
+engine = create_engine('postgresql://catalog:catalog@localhost/catalog')
 
 Base.metadata.create_all(engine)

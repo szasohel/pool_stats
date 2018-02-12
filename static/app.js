@@ -19,7 +19,6 @@ $(document).ready(function() {
     play_btn.click(function(event) {
         var winner = $("input[name=player]:checked").val();
         if (winner) {
-        	event.preventDefault();
             $(".greet-text").html("<h1>Congratulations " +
                 winner + "!</h1>").slideDown(1000);
             $(".greet-text").delay(2000).slideUp(1000);

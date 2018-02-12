@@ -3,12 +3,13 @@ from sqlalchemy.orm import sessionmaker
 from model import Base, Stats
 from flask import Flask, render_template, url_for
 from flask import request, redirect, flash
+import time
 
 
 app = Flask(__name__)
 
 # connect to database
-engine = create_engine('sqlite:///Stats.db')
+engine = create_engine('postgresql://catalog:catalog@localhost/catalog')
 Base.metadata.bind = engine
 
 # create database session
@@ -66,6 +67,7 @@ def play_game(player1,player2):
 			loser.game = loser.game + 1
 			loser.lose = loser.lose + 1
 			session.commit()
+			time.sleep(2)
 			return redirect(url_for('leaderboard'))
 		elif request.form["player"] == player2:
 			winner = session.query(Stats).filter_by(player=player2).one()
@@ -75,6 +77,7 @@ def play_game(player1,player2):
 			loser.game = loser.game + 1
 			loser.lose = loser.lose + 1
 			session.commit()
+			time.sleep(2)
 			return redirect(url_for('leaderboard'))
 	return render_template('play_game.html', player1=player1, player2=player2)
 

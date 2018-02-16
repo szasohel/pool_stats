@@ -6,7 +6,7 @@ Pool game score tracking app
 
 To run this project:
 1. Python2 or 3
-2. PostgreSQL
+2. SQLite
 3. sqlalchemy
 4. flask
 
@@ -30,7 +30,7 @@ catalog folder:
 
 ## How it works:
 
-This project sets up a PostgreSQL database for a fictional pool
+This project sets up a SQLite database for a fictional pool
 game score tracking web application. HTML, CSS and JavaScript 
 uses to design front end functionality. The provided Python 
 script uses the sqlalchemy library to create new player and read player
